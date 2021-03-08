@@ -1,0 +1,1 @@
+angular.module("codecraft",["ngResource","infinite-scroll","angularSpinner","jcs-autoValidate","angular-ladda","mgcrea.ngStrap","toaster","ngAnimate","ui.router"]).config((function(a,e,t,n){t.setOption({style:"expand-right"}),angular.extend(n.defaults,{dateFormat:"d/M/yyyy",autoclose:!0})}));
