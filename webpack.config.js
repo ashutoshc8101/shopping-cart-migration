@@ -11,9 +11,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.ts$/,
                 exclude: /(node_modules)/,
-                use: ['angularjs-template-loader']
+                use: ['ts-loader', 'angularjs-template-loader']
             },
             {
                 test: /\.s?css$/,
