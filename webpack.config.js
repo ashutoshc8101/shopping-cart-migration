@@ -2,18 +2,21 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry:  path.resolve(__dirname, 'src/app/main.js'),
+    entry:  path.resolve(__dirname, 'src/app/main.ts'),
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
+    },
+    resolve: {
+        extensions: ['.ts', '.js']
     },
 
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.ts$/,
                 exclude: /(node_modules)/,
-                use: ['angularjs-template-loader']
+                use: ['ts-loader', 'angularjs-template-loader']
             },
             {
                 test: /\.s?css$/,

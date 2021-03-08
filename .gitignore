@@ -6,4 +6,7 @@ tmp
 .DS_Store
 .idea
 src/libs
-data/db.json  
+data/db.json
+yarn-error.logs
+yarn.lock
+build/

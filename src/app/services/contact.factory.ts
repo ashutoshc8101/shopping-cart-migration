@@ -1,3 +1,4 @@
+import * as angular from 'angular';
 angular
   .module("codecraft")
   .factory("Contact", function($resource) {

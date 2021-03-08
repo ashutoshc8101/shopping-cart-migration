@@ -7,7 +7,7 @@ require('ladda/dist/ladda-themeless.min.css');
 require('font-awesome/css/font-awesome.min.css');
 require('../css/main.scss');
 
-require('angular');
+import * as angular from 'angular';
 require('angular-resource');
 require('angular-animate');
 
