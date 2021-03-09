@@ -1,2 +1,2 @@
-require('./contact.factory')
-require('./contact-service.factory')
+require('./contact.resource')
+require('./contact.service')
