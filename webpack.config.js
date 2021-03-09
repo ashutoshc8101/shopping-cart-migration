@@ -16,7 +16,7 @@ module.exports = {
             {
                 test: /\.ts$/,
                 exclude: /(node_modules)/,
-                use: ['ts-loader', 'angularjs-template-loader']
+                use: ['ts-loader', 'angularjs-template-loader',]
             },
             {
                 test: /\.s?css$/,
@@ -47,10 +47,11 @@ module.exports = {
                 }
                 ],
             },
-        ]
+       ]
     },
 
     mode: 'development',
+    devtool: 'eval',
     devServer: {
         port: 4200
     },

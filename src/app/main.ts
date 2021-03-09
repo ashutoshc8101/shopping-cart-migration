@@ -1,4 +1,3 @@
-//@require "./**/*.html" 
 require('bootstrap/dist/css/bootstrap.min.css');
 require('../css/paper.css')
 require('bootstrap-additions/dist/bootstrap-additions.min.css')
@@ -49,32 +48,10 @@ angular
   });
 
 
+require('./App')
+require('./directives/app-root.directive')
 require('./controllers')
 require('./directives')
 require('./filters')
 require('./services')
 require('./app.routes')
-
-
-// Angular section
-
-import('./polyfills')
-
-import { enableProdMode, StaticProvider } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { downgradeModule } from '@angular/upgrade/static';
-
-import { AppModule } from './app.module';
-import { environment } from './environments/environment';
-
-if (environment.production) {
-  enableProdMode();
-}
-
-const bootstrapFn = (extraProviders: StaticProvider[]) => {
-  const platformRef = platformBrowserDynamic(extraProviders);
-  return platformRef.bootstrapModule(AppModule);
-};
-const downgradedModule = downgradeModule(bootstrapFn);
-
-angular.module('codecraft').requires.push(downgradedModule);

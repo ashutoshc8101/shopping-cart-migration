@@ -10,7 +10,6 @@ angular
     $scope.person = {};
 
     $scope.save = function() {
-      console.log("createContact");
       $scope.contacts.createContact($scope.person).then(function() {
         $state.go("list");
       });

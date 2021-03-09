@@ -5,7 +5,6 @@ angular
     var self = {
       isDeleting: false,
       getPerson: function(email) {
-        console.log(email);
         for (var i = 0; i < self.persons.length; i++) {
           var obj = self.persons[i];
           if (obj.email == email) {
@@ -45,7 +44,6 @@ angular
           };
 
           Contact.query(params, function(data) {
-            console.debug(data);
             angular.forEach(data, function(person) {
               self.persons.push(new Contact(person));
             });
