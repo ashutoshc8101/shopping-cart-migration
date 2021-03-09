@@ -7,6 +7,8 @@ import { ServiceBootstrapComponent } from "./components/service-bootstrap.compon
 import { Contact } from "./services/contact.resource";
 import { ContactService } from "./services/contact.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { CCcardComponent } from "./directives/cc-card.component";
+import { defaultImagePipe } from "./filters/default-image.filter";
 
 @NgModule({
     imports: [
@@ -18,12 +20,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     ],
     declarations: [
         ServiceBootstrapComponent,
+        CCcardComponent,
+        defaultImagePipe,
     ],
     entryComponents: [
         ServiceBootstrapComponent,
+        CCcardComponent
     ],
     exports: [
         ServiceBootstrapComponent,
+        CCcardComponent
     ],
     providers: [
         Contact,

@@ -6,7 +6,7 @@
        infinite-scroll-distance="1">
 
     <cc-card ng-repeat="person in contacts.persons track by person.id"
-             user="person">
+             [user]="person" (update-user)="updatePerson()">
     </cc-card>
 
   </div>

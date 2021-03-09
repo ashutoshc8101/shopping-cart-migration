@@ -16,7 +16,7 @@ module.exports = {
             {
                 test: /\.ts$/,
                 exclude: /(node_modules)/,
-                use: ['ts-loader', 'angularjs-template-loader',]
+                use: ['ts-loader', 'angular2-template-loader',]
             },
             {
                 test: /\.s?css$/,

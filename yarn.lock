@@ -1200,6 +1200,13 @@ angular-strap@2.3.12:
   resolved "https://registry.yarnpkg.com/angular-strap/-/angular-strap-2.3.12.tgz#fae21655cd77079671bf918ab7ed6227783062fa"
   integrity sha1-+uIWVc13B5Zxv5GKt+1iJ3gwYvo=
 
+angular2-template-loader@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/angular2-template-loader/-/angular2-template-loader-0.6.2.tgz#c0d44e90fff0fac95e8b23f043acda7fd1c51d7c"
+  integrity sha1-wNROkP/w+sleiyPwQ6zaf9HFHXw=
+  dependencies:
+    loader-utils "^0.2.15"
+
 angular@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.4.0.tgz#ca4b05ce749dd40662c0d066921f2d01a9c82a13"
@@ -3912,7 +3919,7 @@ loader-runner@^4.2.0:
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-4.2.0.tgz#d7022380d66d14c5fb1d496b89864ebcfd478384"
   integrity sha512-92+huvxMvYlMzMt0iIOukcwYBFpkYJdpl2xsZ7LrlayO7E8SOv+JJUEK17B/dJIHAOLMfh2dZZ/Y18WgmGtYNw==
 
-loader-utils@0.2.x:
+loader-utils@0.2.x, loader-utils@^0.2.15:
   version "0.2.17"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
   integrity sha1-+G5jdNQyBabmxg6RlvF8Apm/s0g=
