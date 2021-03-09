@@ -40,12 +40,12 @@ angular
             _page: self.page,
             _sort: self.sorting,
             _order: self.ordering,
-            q: self.search
+            q: self.search ? self.search : ''
           };
 
-          Contact.query(params, function(data) {
+          Contact.query(params).then(function(data) {
             angular.forEach(data, function(person) {
-              self.persons.push(new Contact(person));
+              self.persons.push(person);
             });
 
             if (data.length === 0) {
@@ -64,7 +64,7 @@ angular
       updateContact: function(person) {
         var d = $q.defer();
         self.isSaving = true;
-        person.$update().then(function() {
+        Contact.update(person).then(function() {
           self.isSaving = false;
           toaster.pop("success", "Updated " + person.name);
           d.resolve();
@@ -75,7 +75,8 @@ angular
         var d = $q.defer();
         self.isDeleting = true;
         let name = person.name;
-        person.$remove().then(function() {
+        Contact.remove(person)
+        .then(function() {
           self.isDeleting = false;
           var index = self.persons.indexOf(person);
           self.persons.splice(index, 1);
@@ -87,7 +88,7 @@ angular
       createContact: function(person) {
         var d = $q.defer();
         self.isSaving = true;
-        Contact.save(person).$promise.then(function() {
+        Contact.save(person).then(function() {
           self.isSaving = false;
           self.hasMore = true;
           self.page = 1;

@@ -15,7 +15,7 @@ export class Contact {
     @Inject(HttpClient) private httpClient: HttpClient
   ) { }
 
-  query (params) {
+  query (params): Promise<any> {
     return this.httpClient.get(this.apiRoot, { params }).toPromise();
   }
 
