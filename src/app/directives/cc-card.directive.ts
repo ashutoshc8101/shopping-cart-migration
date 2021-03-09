@@ -14,6 +14,7 @@ angular
           $scope.isDeleting = true;
           ContactService.removeContact($scope.user).then(function() {
             $scope.isDeleting = false;
+            $scope.$apply();
           });
         };
       }

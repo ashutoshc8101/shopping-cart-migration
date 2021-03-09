@@ -51,7 +51,6 @@ module.exports = {
     },
 
     mode: 'development',
-    devtool: 'eval',
     devServer: {
         port: 4200
     },

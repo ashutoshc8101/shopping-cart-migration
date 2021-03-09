@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@angular/core";
 import { downgradeInjectable, getAngularJSGlobal } from "@angular/upgrade/static";
 import { HttpClient } from '@angular/common/http';
 import * as angular from 'angular';
+import { Person } from "./contact.service";
 
 
 @Injectable({
@@ -15,24 +16,24 @@ export class Contact {
     @Inject(HttpClient) private httpClient: HttpClient
   ) { }
 
-  query (params): Promise<any> {
-    return this.httpClient.get(this.apiRoot, { params }).toPromise();
+  query (params): Promise<Person[]> {
+    return this.httpClient.get<Person[]>(this.apiRoot, { params }).toPromise();
   }
 
-  get(id, params?: { string: string }) {
-    return this.httpClient.get(this.apiRoot + '/' + id, { params }).toPromise();
+  get(id: number, params?: { string: string }) {
+    return this.httpClient.get<Person>(this.apiRoot + '/' + id, { params }).toPromise();
   }
 
-  save(data: any) {
-    return this.httpClient.post(this.apiRoot, data).toPromise();
+  save(data: Person) {
+    return this.httpClient.post<Person>(this.apiRoot, data).toPromise();
   }
 
-  update(data: any) {
-    return this.httpClient.put(this.apiRoot + '/' + data.id, data).toPromise();
+  update(data: Person) {
+    return this.httpClient.put<Person>(this.apiRoot + '/' + data.id, data).toPromise();
   }
 
-  remove(data: any) {
-    return this.httpClient.delete(this.apiRoot + '/' + data.id).toPromise();
+  remove(data: Person) {
+    return this.httpClient.delete<Person>(this.apiRoot + '/' + data.id).toPromise();
   }
 }
 

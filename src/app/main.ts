@@ -4,6 +4,7 @@ require('bootstrap-additions/dist/bootstrap-additions.min.css')
 require('angularjs-toaster/toaster.min.css')
 require('ladda/dist/ladda-themeless.min.css');
 require('font-awesome/css/font-awesome.min.css');
+require('ngx-toastr/toastr.css');
 require('../css/main.scss');
 
 import * as angular from 'angular';
@@ -53,5 +54,4 @@ require('./directives/app-root.directive')
 require('./controllers')
 require('./directives')
 require('./filters')
-require('./services')
 require('./app.routes')

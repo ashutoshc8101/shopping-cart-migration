@@ -1,107 +1,137 @@
+import { Inject, Injectable, resolveForwardRef } from '@angular/core';
+import { downgradeInjectable } from '@angular/upgrade/static';
 import * as angular from 'angular'
-angular
-  .module("codecraft")
-  .factory("ContactService", function(Contact, $rootScope, $q, toaster) {
-    var self = {
-      isDeleting: false,
-      getPerson: function(email) {
-        for (var i = 0; i < self.persons.length; i++) {
-          var obj = self.persons[i];
-          if (obj.email == email) {
-            return obj;
-          }
-        }
-      },
-      page: 1,
-      hasMore: true,
-      isLoading: false,
-      isSaving: false,
-      persons: [],
-      search: null,
-      sorting: "name",
-      ordering: "ASC",
-      doSearch: function() {
-        self.hasMore = true;
-        self.page = 1;
-        self.persons = [];
-        self.loadContacts();
-      },
-      doOrder: function() {
-        self.hasMore = true;
-        self.page = 1;
-        self.persons = [];
-        self.loadContacts();
-      },
-      loadContacts: function() {
-        if (self.hasMore && !self.isLoading) {
-          self.isLoading = true;
+import { ToastrService } from 'ngx-toastr';
+import { Contact } from './contact.resource';
 
-          var params = {
-            _page: self.page,
-            _sort: self.sorting,
-            _order: self.ordering,
-            q: self.search ? self.search : ''
-          };
+export interface Person {
+    id: number,
+    createdTs: string,
+    updatedTs: string,
+    name: string,
+    email: string,
+    sex: string,
+    birthdate: string,
+    phonenumber: string,
+    address: string,
+    city: string,
+    country: string,
+    photo: string,
+    favorite: boolean
+}
 
-          Contact.query(params).then(function(data) {
-            angular.forEach(data, function(person) {
-              self.persons.push(person);
-            });
+@Injectable({
+  providedIn: 'root'
+})
+export class ContactService {
 
-            if (data.length === 0) {
-              self.hasMore = false;
-            }
-            self.isLoading = false;
-          });
-        }
-      },
-      loadMore: function() {
-        if (self.hasMore && !self.isLoading) {
-          self.page += 1;
-          self.loadContacts();
-        }
-      },
-      updateContact: function(person) {
-        var d = $q.defer();
-        self.isSaving = true;
-        Contact.update(person).then(function() {
-          self.isSaving = false;
-          toaster.pop("success", "Updated " + person.name);
-          d.resolve();
-        });
-        return d.promise;
-      },
-      removeContact: function(person) {
-        var d = $q.defer();
-        self.isDeleting = true;
-        let name = person.name;
-        Contact.remove(person)
-        .then(function() {
-          self.isDeleting = false;
-          var index = self.persons.indexOf(person);
-          self.persons.splice(index, 1);
-          toaster.pop("success", "Deleted " + name);
-          d.resolve();
-        });
-        return d.promise;
-      },
-      createContact: function(person) {
-        var d = $q.defer();
-        self.isSaving = true;
-        Contact.save(person).then(function() {
-          self.isSaving = false;
-          self.hasMore = true;
-          self.page = 1;
-          self.persons = [];
-          self.loadContacts();
-          toaster.pop("success", "Created " + person.name);
-          d.resolve();
-        });
-        return d.promise;
+  isDeleting : boolean = false;
+  page: number = 1;
+  hasMore: boolean = true;
+  isLoading: boolean = false;
+  isSaving: boolean = false;
+  persons: Person[] = []
+  search: string = ''
+  sorting: string = 'name';
+  ordering: string = 'ASC';
+
+  constructor(
+    @Inject(Contact) private contact: Contact,
+    @Inject(ToastrService) private toastr: ToastrService
+  ) {
+    this.loadContacts()
+   }
+
+
+  getPerson(email: string): object {
+    for (let i = 0; i < this.persons.length; i++) {
+      if (this.persons[i].email === email) {
+        return this.persons[i];
       }
-    };
+    }
+  }
 
-    self.loadContacts();
+  doSearch(): void {
+    this.hasMore = true;
+    this.page = 1;
+    this.persons = [];
+    this.loadContacts();
+  }
 
-    return self;
-  });
+  loadContacts(): void {
+    if ( this.hasMore && !this.isLoading ) {
+      this.isLoading = true;
+
+      let params = {
+        _page : this.page,
+        _sort : this.sorting,
+        _order : this.ordering,
+        q : this.search
+      };
+
+      this.contact.query(params).then((data: []) => {
+        data.forEach(person => {
+          this.persons.push(person);
+        });
+
+        if (data.length === 0) {
+          this.hasMore = false;
+        }
+
+        this.isLoading = false;
+      });
+    }
+  }
+
+  loadMore(): void {
+    if (this.hasMore && !this.isLoading) {
+      this.page += 1;
+      this.loadContacts();
+    }
+  }
+
+  updateContact(person: Person): Promise<void> {
+    this.isSaving = true;
+    return new Promise((resolve, reject) => {
+      this.contact.update(person).then(() => {
+        this.isSaving = false;
+        this.toastr.success('Updated ' + person.name);
+        resolve();
+      })
+    });
+  }
+
+  removeContact(person: Person): Promise<void> {
+    this.isDeleting = true;
+    let name = person.name;
+    return new Promise((resolve, reject) => {
+      this.contact.remove(person)
+      .then(() => {
+        this.isDeleting = false;
+        let index = this.persons.indexOf(person);
+        this.persons.splice(index, 1);
+        this.toastr.success("Removed " + name);
+        resolve();
+      });
+    });
+  }
+
+  createContact(person): Promise<void> {
+    this.isSaving = true;
+    return new Promise((resolve, reject) => {
+      this.contact.save(person).then(() => {
+        this.isSaving = false;
+        this.hasMore = true;
+        this.page = 1;
+        this.persons = [];
+        this.loadContacts();
+        this.toastr.success('Created ' + person.name);
+        resolve();
+      });
+    });
+  }
+
+}
+
+angular.module('codecraft')
+  .factory('ContactService', downgradeInjectable(ContactService));
