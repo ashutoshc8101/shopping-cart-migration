@@ -1,0 +1,31 @@
+<form class="navbar-form navbar-left">
+
+  <div class="form-group">
+    <input type="text"
+           class="form-control"
+           id="name"
+           [(ngModel)]="contactService.search"
+           ng-model-options="{ debounce: 300 }"
+           placeholder="Search name..."
+           (change)="contactService.doSearch()"
+    />
+  </div>
+
+  <div class="form-group">
+    <select class="form-control"
+            [ngModel]="contactService.sorting"
+            (change)="contactService.doSearch()">
+      <option value="name">Name</option>
+      <option value="email">Email</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <select class="form-control"
+            [ngModel]="contactService.ordering"
+            (change)="contactService.doSearch()">
+      <option value="ASC">ASC</option>
+      <option value="DESC">DESC</option>
+    </select>
+  </div>
+</form>

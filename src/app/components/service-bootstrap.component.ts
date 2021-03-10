@@ -1,5 +1,4 @@
-import { Component, Output, EventEmitter, Inject, AfterViewInit } from '@angular/core';
-import { Contact } from '../services/contact.resource';
+import { Component, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 @Component({
     selector: 'service-bootstrap',

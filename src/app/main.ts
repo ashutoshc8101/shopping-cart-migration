@@ -52,5 +52,4 @@ angular
 require('./App')
 require('./directives/app-root.directive')
 require('./controllers')
-require('./directives')
 require('./app.routes')

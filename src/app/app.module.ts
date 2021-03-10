@@ -7,8 +7,10 @@ import { ServiceBootstrapComponent } from "./components/service-bootstrap.compon
 import { Contact } from "./services/contact.resource";
 import { ContactService } from "./services/contact.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { CCcardComponent } from "./directives/cc-card.component";
+import { CCcardComponent } from "./components/cc-card.component";
 import { defaultImagePipe } from "./filters/default-image.filter";
+import { CcSpinnerComponent } from "./components/cc-spinner.component";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
     imports: [
@@ -17,19 +19,23 @@ import { defaultImagePipe } from "./filters/default-image.filter";
         HttpClientModule,
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
+        NgxSpinnerModule,
     ],
     declarations: [
         ServiceBootstrapComponent,
         CCcardComponent,
+        CcSpinnerComponent,
         defaultImagePipe,
     ],
     entryComponents: [
         ServiceBootstrapComponent,
-        CCcardComponent
+        CCcardComponent,
+        CcSpinnerComponent,
     ],
     exports: [
         ServiceBootstrapComponent,
-        CCcardComponent
+        CCcardComponent,
+        CcSpinnerComponent,
     ],
     providers: [
         Contact,

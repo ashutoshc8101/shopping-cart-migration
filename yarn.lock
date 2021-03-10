@@ -1217,13 +1217,6 @@ angular@^1.0.8:
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.8.2.tgz#5983bbb5a9fa63e213cb7749199e0d352de3a2f1"
   integrity sha512-IauMOej2xEe7/7Ennahkbb5qd/HFADiNuLSESz9Q27inmi32zB0lnAsFeLEWcox3Gd1F6YhNd1CP7/9IukJ0Gw==
 
-angularjs-template-loader@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/angularjs-template-loader/-/angularjs-template-loader-0.1.2.tgz#c06058e2c02c279c5b41b4e597dd92f9d01a1229"
-  integrity sha512-9a7K6MCHGjmmWGY6Fqb9l9NUxWTbGb/uU1WKDzEKoitauMkINY6xtjuEuL6puJA1h4rqhqm8XN8I1TqXnT9hfQ==
-  dependencies:
-    loader-utils "^1.1.0"
-
 angularjs-toaster@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/angularjs-toaster/-/angularjs-toaster-2.1.0.tgz#63f55eafeddfe4b727e147f4f2843722a87295fc"
@@ -4307,6 +4300,13 @@ ng-infinite-scroll@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/ng-infinite-scroll/-/ng-infinite-scroll-1.3.0.tgz#c2e98d8fd134b0525a4d2cf58c95d9b583755112"
   integrity sha1-wumNj9E0sFJaTSz1jJXZtYN1URI=
+
+ngx-spinner@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-spinner/-/ngx-spinner-10.0.1.tgz#f08932a34bf98b302488a9c475584970ed386d23"
+  integrity sha512-3fkzS4t+oKg1jobUmWxeGD3zLymdIOMijib517tgrDnW4Q2fKKwZPVCfTR5ztm9G0/l9G/DRoOoBcHPPupUBdg==
+  dependencies:
+    tslib "^2.0.0"
 
 ngx-toastr@^13.2.0:
   version "13.2.0"

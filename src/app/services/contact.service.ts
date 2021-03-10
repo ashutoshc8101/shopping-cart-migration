@@ -1,4 +1,4 @@
-import { Inject, Injectable, resolveForwardRef } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { downgradeInjectable } from '@angular/upgrade/static';
 import * as angular from 'angular'
 import { ToastrService } from 'ngx-toastr';
